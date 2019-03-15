@@ -1,13 +1,17 @@
 body {
   text-align: center;
-  background-color: #011F3F;
+  /* background-color: #011F3F; */
+  background-image: url("pics/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
   margin:  5%;
-  color: #FEF2BF;
+  color: #494ca2;
 }
 
 .container {
@@ -24,11 +28,21 @@ body {
   width: 200px;
   border: 10px solid black;
   border-radius: 20%;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-end {
+  visibility: hidden;
 }
 
 .game-over {
-  background-color: red;
-  opacity: 0.8;
+  background-image: url("pics/sadface.png");
+  background-size: 40%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 2;
 }
 
 .red {

@@ -2,12 +2,18 @@ var buttonColors = ["red", "blue", "green", "yellow"];
 var gamepattern = [];
 var userClickedPattern = [];
 var level = 0;
+var text = ["Your level is: ", "Good luck next time!", "Press any key to play again!"];
+var x = 0;
 
-$(document).keydown(function() {
-  $("h1").text("level " + level);
-  nextSequence();
-  gameStart();
-});
+start();
+
+function start() {
+  $(document).one("keydown", function() {
+    $("h1").text("level " + level);
+    nextSequence();
+    gameStart();
+  });
+}
 
 function gameStart() {
   $(".btn").on("click", function() {
@@ -32,20 +38,38 @@ function checkAnswer(currentLevel) {
       userClickedPattern = [];
     }
   } else {
-    $("h1").text("Game Over! Press any key to start");
+    // $("h1").text("Your level:" + level);
+    textChange();
+
+    $(".btn").addClass("btn-end");
+    setTimeout(function() {
+      $(".btn").removeClass("btn-end")
+    }, 6000);
+
+    // $("h1").text("Game Over! Press any key to start");
     $("body").addClass("game-over");
     setTimeout(function() {
-      $("body").removeClass("game-over")
-    }, 1000);
+      $("body").removeClass("game-over ")
+    }, 6000);
+
     $(".btn").off("click");
     startOver();
   }
+}
+
+function textChange() {
+    $("h1").text(text[0] + level).fadeOut(3000, function() {
+      $(this).text(text[1]).fadeIn(3000, function() {
+        $(this).text(text[2]).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+      });
+    });
 }
 
 function startOver() {
   gamepattern = [];
   userClickedPattern = [];
   level = 0;
+  start();
 }
 // $(".btn").on("click",function(event) {
 //   //way2 using atrribute (attr())
